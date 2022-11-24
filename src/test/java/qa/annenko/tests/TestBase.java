@@ -36,7 +36,6 @@ public class TestBase {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-
         Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browser = Properties.browser();
