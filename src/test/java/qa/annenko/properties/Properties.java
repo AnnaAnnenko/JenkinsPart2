@@ -15,6 +15,6 @@ public class Properties {
     }
 
     public static String remoteBrowser() {
-        return System.getProperty("remoteBrowser");
+        return System.getProperty("remoteBrowser", "");
     }
 }

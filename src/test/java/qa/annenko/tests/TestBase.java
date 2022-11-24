@@ -42,7 +42,7 @@ public class TestBase {
         Configuration.browser = Properties.browser();
         Configuration.browserVersion  = Properties.browserVersion();
         Configuration.browserSize = Properties.screenSize();
-        if (Properties.remoteBrowser() != null) {
+        if (!Properties.remoteBrowser().equals("")) {
             Configuration.remote = Properties.remoteBrowser();
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
