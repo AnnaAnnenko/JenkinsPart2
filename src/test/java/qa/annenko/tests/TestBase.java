@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import qa.annenko.helpers.Attach;
+import qa.annenko.properties.Properties;
 import qa.annenko.utils.Randoms;
 
 public class TestBase {
@@ -34,16 +35,18 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("browserName", "chrome");
-//        capabilities.setCapability("browserVersion", "100.0");
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
+
 
         Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x680";
-//        Configuration.holdBrowserOpen = true;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browser = Properties.browser();
+        Configuration.browserVersion  = Properties.browserVersion();
+        Configuration.browserSize = Properties.screenSize();
+        if (!Properties.remoteBrowser().equals("")) {
+            Configuration.remote = Properties.remoteBrowser();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+        }
     }
 
     @AfterEach
